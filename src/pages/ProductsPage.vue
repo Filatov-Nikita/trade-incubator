@@ -6,8 +6,16 @@
         <q-btn
           color="primary"
           label="Добавить"
+          @click="showedCreate = true"
         />
       </div>
+      <ModalCreate v-model="showedCreate" @success="send" />
+      <ModalUpdate
+        v-if="activeProduct"
+        v-model="showedUpdate"
+        :productId="activeProduct"
+        @success="send(); activeProduct = null"
+      />
       <q-markup-table v-if="products" flat bordered>
         <thead>
           <tr>
@@ -24,7 +32,14 @@
             <td>{{ product.id }}</td>
             <td>{{ product.name }}</td>
             <td>
-              <q-btn color="primary" round flat icon="edit" size="sm"></q-btn>
+              <q-btn
+                color="primary"
+                round
+                flat
+                icon="edit"
+                size="sm"
+                @click="activeProduct = product.id; showedUpdate = true"
+              />
             </td>
           </tr>
         </tbody>
@@ -36,7 +51,17 @@
 <script setup lang="ts">
   import useRepositories from 'src/composables/useRepositories';
   import useRequest from 'src/composables/useRequest';
+  import ModalCreate from 'src/components/Products/ModalCreate.vue';
+  import ModalUpdate from 'src/components/Products/ModalUpdate.vue';
+  import { ref } from 'vue';
 
   const api = useRepositories();
-  const { data: products } = useRequest(api.products.list);
+  const { data: products, send } = useRequest(
+    api.products.list,
+    { errorText: 'Не удалось загрузить продукты!' },
+  );
+
+  const showedCreate = ref(false);
+  const showedUpdate = ref(false);
+  const activeProduct = ref<number | null>(null);
 </script>

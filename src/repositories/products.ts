@@ -7,13 +7,13 @@ export default function(http: AxiosInstance) {
       return http.get<Response<ProductListItem[]>>('products');
     },
     create(body: ProductBody) {
-      return http.post<ProductListItem>('products', body);
+      return http.post<Response<ProductListItem>>('products', body);
     },
     show(id: string | number) {
-      return http.get<ProductListItem>(`products/${id}`);
+      return http.get<Response<ProductListItem>>(`products/${id}`);
     },
     update(id: string | number, body: ProductBody) {
-      return http.put<ProductListItem>(`products/${id}`, body);
+      return http.put<Response<ProductListItem>>(`products/${id}`, body);
     },
     remove(id: string | number) {
       return http.delete<void>(`products/${id}`);

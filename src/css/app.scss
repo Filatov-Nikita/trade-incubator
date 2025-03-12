@@ -17,3 +17,8 @@ h1, .h1 {
   padding-top: 16px;
   padding-bottom: 32px;
 }
+
+.card-modal {
+  width: 100%;
+  @apply tw-bg-white;
+}
