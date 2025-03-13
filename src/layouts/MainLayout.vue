@@ -21,7 +21,7 @@
             </q-item-section>
             <q-item-section class="nav-item__label">Продукты</q-item-section>
           </q-item>
-          <q-item clickable v-ripple active :to="{ to: '/2' }">
+          <q-item clickable v-ripple active :to="{ name: 'companies.index' }">
             <q-item-section avatar>
               <q-icon class="nav-item__icon" name="store" />
             </q-item-section>
