@@ -1,12 +1,14 @@
 <template>
   <q-form @submit="$emit('submit')">
     <q-input
+      filled
       label="Наименование*"
       v-model="form.name"
       :error="!!errors.name"
       :error-message="errors.name"
     />
     <q-input
+      filled
       label="Телефон"
       v-model="form.phone"
       mask="+7 (###) ### ## ##"
@@ -14,12 +16,14 @@
       :error-message="errors.phone"
     />
     <q-input
+      filled
       label="Email"
       v-model="form.email"
       :error="!!errors.email"
       :error-message="errors.email"
     />
     <q-input
+      filled
       type="textarea"
       label="Описание"
       v-model="form.description"

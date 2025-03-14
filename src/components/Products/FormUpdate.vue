@@ -1,6 +1,7 @@
 <template>
   <q-form @submit="$emit('submit')">
     <q-input
+      filled
       label="Наименование"
       v-model="form.name"
       :error="!!errors.name"

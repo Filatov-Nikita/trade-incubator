@@ -7,8 +7,8 @@
           <q-btn flat round icon="close" @click="value = false" />
         </div>
         <FormUpdate :form="form" :errors="errors" @submit="send" />
+        <q-inner-loading :showing="loading || loadingCompany" />
       </q-card-section>
-      <q-inner-loading :showing="loading || loadingCompany" />
     </q-card>
   </q-dialog>
 </template>
