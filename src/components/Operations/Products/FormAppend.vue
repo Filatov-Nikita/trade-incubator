@@ -1,7 +1,7 @@
 <template>
   <q-form ref="formRef" @submit="submit">
-    <ProductsSelect v-model="form.product" :disabledIds="disabledIds" :rules="[requiredRule]"  />
-    <q-input filled type="number" label="Цена" v-model="form.price" :rules="[requiredRule]" />
+    <ProductsSelect class="tw-mb-2" v-model="form.product" :disabledIds="disabledIds" :rules="[requiredRule]"  />
+    <q-input class="tw-mb-2" filled type="number" label="Цена" v-model="form.price" :rules="[requiredRule]" />
     <q-input filled type="number" label="Количество" v-model="form.count" :rules="[requiredRule]" />
     <q-btn class="tw-w-full tw-mt-3" color="primary" type="submit" flat>Добавить</q-btn>
   </q-form>

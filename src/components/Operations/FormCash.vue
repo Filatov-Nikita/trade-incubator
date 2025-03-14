@@ -1,11 +1,13 @@
 <template>
   <q-form @submit="$emit('submit')">
     <CompaniesSelect
+      class="tw-mb-2"
       v-model="form.company_id"
       :error="!!errors.company_id"
       :error-message="errors.company_id"
     />
     <q-input
+      class="tw-mb-2"
       filled
       label="Сумма*"
       v-model="form.sum"
@@ -13,6 +15,7 @@
       :error-message="errors.sum"
     />
     <q-input
+      class="tw-mb-2"
       filled
       type="textarea"
       label="Комментарий"

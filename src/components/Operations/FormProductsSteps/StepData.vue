@@ -1,11 +1,13 @@
 <template>
   <q-form>
     <CompaniesSelect
+      class="tw-mb-2"
       v-model="form.company_id"
       :error="!!errors.company_id"
       :error-message="errors.company_id"
     />
     <q-input
+      class="tw-mb-2"
       filled
       type="textarea"
       label="Комментарий"

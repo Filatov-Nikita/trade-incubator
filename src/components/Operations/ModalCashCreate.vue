@@ -2,7 +2,7 @@
   <q-dialog v-model="value">
     <q-card class="tw-w-full tw-bg-white">
       <q-card-section>
-        <div class="tw-flex tw-items-center tw-gap-4">
+        <div class="tw-flex tw-items-center tw-gap-4 tw-mb-4">
           <div class="tw-text-xl tw-font-bold tw-grow">
             {{ operationType === 'purchase' ? 'Новая отгрузка' : 'Новый приход' }}
           </div>
