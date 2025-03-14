@@ -2,6 +2,8 @@ import { defineBoot } from '#q-app/wrappers';
 import axios, { type AxiosInstance } from 'axios';
 import createProductsRepo from 'src/repositories/products';
 import createCompaniesRepo from 'src/repositories/companies';
+import createOperationsRepo from 'src/repositories/operations';
+import createFilesRepo from 'src/repositories/files';
 import { InjectionKey } from 'vue';
 
 declare module 'vue' {
@@ -25,6 +27,8 @@ export function createRepositories(http: AxiosInstance) {
   const repositories = {
     'products': createProductsRepo(http),
     'companies': createCompaniesRepo(http),
+    'operations': createOperationsRepo(http),
+    'files': createFilesRepo(http),
   };
 
   return repositories;
