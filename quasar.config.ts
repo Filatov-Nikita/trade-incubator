@@ -38,7 +38,7 @@ export default defineConfig((/* ctx */) => {
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-file#build
     build: {
       env: {
-        API_BASE: 'http://trade-journal.test/api',
+        API_BASE: process.env.API_BASE,
       },
 
       target: {
