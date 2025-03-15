@@ -60,6 +60,10 @@
     operationType: OperationType,
   }>();
 
+  const emit = defineEmits<{
+    (event: 'success'): void,
+  }>();
+
   const value = defineModel<boolean>({ default: false });
 
   const files = ref<FileItem[]>([]);
@@ -86,6 +90,7 @@
       onSuccess() {
         value.value = false;
         resetForms();
+        emit('success');
         Notify.create({ type: 'positive', message: 'Операция успешно создана!' });
       },
     }

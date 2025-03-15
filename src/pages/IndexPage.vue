@@ -18,12 +18,15 @@
         v-if="activeOperation && activeTransaction === 'cash'"
         :operationType="activeOperation"
         v-model="showedCreate"
+        @success="balanceRef?.refresh()"
       />
       <ModalProductsCreate
         v-if="activeOperation && activeTransaction === 'products'"
         :operationType="activeOperation"
         v-model="showedCreate"
+        @success="balanceRef?.refresh()"
       />
+      <BalanceShow ref="balanceRef" />
     </div>
   </q-page>
 </template>
@@ -32,6 +35,7 @@
   import ModalTypes from 'src/components/Operations/ModalTypes.vue';
   import ModalCashCreate from 'src/components/Operations/ModalCashCreate.vue';
   import ModalProductsCreate from 'src/components/Operations/ModalProductsCreate.vue';
+  import BalanceShow from 'src/components/Balance/Show.vue';
   import { OperationType, TransactionType } from 'src/repositories/operations';
   import { ref } from 'vue';
 
@@ -39,4 +43,6 @@
   const showedCreate = ref(false);
   const activeTransaction = ref<TransactionType | null>(null);
   const activeOperation = ref<OperationType | null>(null);
+
+  const balanceRef = ref<{ refresh: () => void } | null>(null);
 </script>
