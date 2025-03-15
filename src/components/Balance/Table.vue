@@ -37,9 +37,9 @@
           <template v-if="operation.transaction_type === 'products'">
             <div v-for="product in operation.products">
               <p>{{ product.name }}</p>
-              <p>Цена: {{ product.price }}</p>
+              <p>Цена: {{ $amount(product.price) }}</p>
               <p>Количество: {{ product.count }}</p>
-              <p>Сумма: {{ product.price * product.count }}</p>
+              <p>Сумма: {{ $amount(product.price * product.count) }}</p>
             </div>
           </template>
         </td>

@@ -8,6 +8,7 @@
     />
     <q-input
       class="tw-mb-2"
+      type="number"
       filled
       label="Сумма*"
       v-model="form.sum"
