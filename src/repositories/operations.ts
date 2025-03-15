@@ -7,10 +7,10 @@ import type { AxiosInstance } from 'axios';
 export default function(http: AxiosInstance) {
   return {
     show(id: string | number) {
-      return http.get<BalanceResponce>(`operations/${id}`);
+      return http.get<Response<BalanceData>>(`operations/${id}`);
     },
     balance(params: BalanceParams) {
-      return http.get<BalanceResponce>('operations/balance', { params });
+      return http.get<Response<BalanceData>>('operations/balance', { params });
     },
     createCash(body: OperationCashBody) {
       return http.post<void>('operations/cash', body);
@@ -58,7 +58,7 @@ export interface OperationShowed {
 export interface BalanceParams {
   date_from: string,
   date_to: string,
-  company: number,
+  company: number | string,
 }
 
 export type TransactionType = 'products' | 'cash';
@@ -89,5 +89,3 @@ export interface BalanceData {
   balance: number,
   operations: OperationRow[],
 }
-
-export type BalanceResponce = Response<BalanceData>;
