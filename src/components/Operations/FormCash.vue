@@ -9,6 +9,8 @@
     <q-input
       class="tw-mb-2"
       type="number"
+      min="0"
+      step="0.01"
       filled
       label="Сумма*"
       v-model="form.sum"

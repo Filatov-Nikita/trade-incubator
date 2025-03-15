@@ -1,8 +1,8 @@
 <template>
   <q-form ref="formRef" @submit="submit">
     <ProductsSelect class="tw-mb-2" v-model="form.product" :disabledIds="disabledIds" :rules="[requiredRule]"  />
-    <q-input class="tw-mb-2" filled type="number" label="Цена" v-model="form.price" :rules="[requiredRule]" />
-    <q-input filled type="number" label="Количество" v-model="form.count" :rules="[requiredRule]" />
+    <q-input class="tw-mb-2" min="0" step="0.01" filled type="number" label="Цена" v-model="form.price" :rules="[requiredRule]" />
+    <q-input filled type="number" min="1" step="1" label="Количество" v-model="form.count" :rules="[requiredRule]" />
     <q-btn class="tw-w-full tw-mt-3" color="primary" type="submit" flat>Добавить</q-btn>
   </q-form>
 </template>
@@ -44,7 +44,11 @@
   const formRef = ref<QForm | null>(null);
 
   function submit() {
-    emit('append', { ...form } as ProductItem);
+    emit('append', {
+      product: form.product!,
+      count: parseInt(form.count.toString()),
+      price: Math.max(0, Math.floor(parseFloat(form.price.toString()) * 100) / 100),
+    });
     resetForm();
     nextTick(() => formRef.value?.reset());
   }
