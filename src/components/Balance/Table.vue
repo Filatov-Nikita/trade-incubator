@@ -38,7 +38,7 @@
             <div v-for="product in operation.products">
               <p>{{ product.name }}</p>
               <p>Цена: {{ $amount(product.price) }}</p>
-              <p>Количество: {{ product.count }}</p>
+              <p>Количество: {{ $formatValue(product.count) }}</p>
               <p>Сумма: {{ $amount(product.price * product.count) }}</p>
             </div>
           </template>

@@ -12,13 +12,13 @@
           Наименование: {{ item.product.name }}
         </q-item-label>
         <q-item-label>
-          Цена: {{ item.price }}
+          Цена: {{ $amount(item.price) }}
         </q-item-label>
         <q-item-label>
-          Количество: {{ item.count }}
+          Количество: {{ $formatValue(item.count) }}
         </q-item-label>
         <q-item-label>
-          Итого: {{ calcTotal(item)}}
+          Итого: {{ $amount(calcTotal(item)) }}
         </q-item-label>
       </q-item-section>
       <q-item-section side>
