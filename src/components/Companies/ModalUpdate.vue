@@ -2,7 +2,7 @@
   <q-dialog v-model="value">
     <q-card class="card-modal">
       <q-card-section>
-        <div class="tw-flex tw-items-center tw-gap-4">
+        <div class="tw-flex tw-items-center tw-gap-4 tw-mb-4">
           <div class="tw-text-xl tw-font-bold tw-grow">Обновить поставщика</div>
           <q-btn flat round icon="close" @click="value = false" />
         </div>

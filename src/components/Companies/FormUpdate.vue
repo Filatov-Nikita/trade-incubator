@@ -1,6 +1,7 @@
 <template>
   <q-form @submit="$emit('submit')">
     <q-input
+      class="tw-mb-2"
       filled
       label="Наименование*"
       v-model="form.name"
@@ -8,6 +9,7 @@
       :error-message="errors.name"
     />
     <q-input
+      class="tw-mb-2"
       filled
       label="Телефон"
       v-model="form.phone"
@@ -16,6 +18,7 @@
       :error-message="errors.phone"
     />
     <q-input
+      class="tw-mb-2"
       filled
       label="Email"
       v-model="form.email"
