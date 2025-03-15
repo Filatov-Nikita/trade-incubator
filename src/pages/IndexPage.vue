@@ -1,7 +1,7 @@
 <template>
   <q-page class="page-py">
     <div class="wrapper">
-      <h1 class="h1 tw-mb-5">Мои опрерации</h1>
+      <h1 class="h1 tw-mb-5">Мои операции</h1>
       <div class="tw-flex tw-flex-wrap tw-gap-3 tw-max-w-[200px] tw-mb-6">
         <q-btn class="tw-bg-orange-600 tw-text-white tw-w-full" @click="showedTypes = true; activeOperation = 'purchase'">
           Новая отгрузка
