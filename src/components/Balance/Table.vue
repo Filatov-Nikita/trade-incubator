@@ -24,10 +24,10 @@
         <td>
           <p class="tw-font-bold">{{ operation.company.name }}</p>
           <p class="tw-mt-1" v-if="operation.company.phone">
-            <a class="tw-text-blue-700" :href="`tel:${operation.company.phone}`">{{ operation.company.phone }}</a>
+            <a class="tw-text-blue-700" :href="`tel:${operation.company.phone}`" @click.stop>{{ operation.company.phone }}</a>
           </p>
           <p class="tw-mt-1" v-if="operation.company.email">
-            <a class="tw-text-blue-700" :href="`mailto:${operation.company.email}`">{{ operation.company.email }}</a>
+            <a class="tw-text-blue-700" :href="`mailto:${operation.company.email}`" @click.stop>{{ operation.company.email }}</a>
           </p>
         </td>
         <td>{{ $prettyDateShort(operation.created_at) }}</td>

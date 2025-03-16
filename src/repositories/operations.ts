@@ -7,7 +7,7 @@ import type { AxiosInstance } from 'axios';
 export default function(http: AxiosInstance) {
   return {
     show(id: string | number) {
-      return http.get<Response<BalanceData>>(`operations/${id}`);
+      return http.get<Response<OperationShowed>>(`operations/${id}`);
     },
     balance(params: BalanceParams) {
       return http.get<Response<BalanceData>>('operations/balance', { params });
@@ -50,7 +50,7 @@ export interface OperationShowed {
   sum: number,
   company: CompanyListItem,
   files: FileItem[],
-  products: ProductListItem[],
+  products: ProductOne[],
   comment: string | null,
   created_at: string,
 }

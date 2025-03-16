@@ -2,7 +2,8 @@
   <Filter class="tw-mb-8" :filter="filter" @apply="send" @reset="resetFilter" />
   <template v-if="operations">
     <Result class="tw-mb-4" :balance="operations.data" />
-    <Table :balance="operations.data" />
+    <Table :balance="operations.data" @operation:show="activeOperation = $event; showed = true" />
+    <ModalOne v-if="activeOperation" v-model="showed" :operationId="activeOperation" />
   </template>
 </template>
 
@@ -10,7 +11,8 @@
   import Filter from 'src/components/Balance/Filter.vue';
   import Table from 'src/components/Balance/Table.vue';
   import Result from 'src/components/Balance/Result.vue';
-  import { reactive } from 'vue';
+  import ModalOne from 'src/components/Balance/ModalOne.vue';
+  import { reactive, ref } from 'vue';
   import { BalanceParams } from 'src/repositories/operations';
   import useRepositories from 'src/composables/useRepositories';
   import useRequest from 'src/composables/useRequest';
@@ -37,6 +39,9 @@
   function resetFilter() {
     Object.assign(filter, initFilter());
   }
+
+  const showed = ref(false);
+  const activeOperation = ref<number | null>(null);
 
   defineExpose({
     refresh: send,
