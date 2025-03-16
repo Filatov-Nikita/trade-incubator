@@ -18,6 +18,7 @@
           'tw-bg-green-50': operation.type === 'supply',
           'tw-bg-red-50': operation.type === 'purchase',
         }"
+        @click="$emit('operation:show', operation.id)"
       >
         <td class="tw-font-bold">{{ operation.id }}</td>
         <td>
@@ -29,7 +30,7 @@
             <a class="tw-text-blue-700" :href="`mailto:${operation.company.email}`">{{ operation.company.email }}</a>
           </p>
         </td>
-        <td>{{ prettyDate(operation.created_at) }}</td>
+        <td>{{ $prettyDateShort(operation.created_at) }}</td>
         <td>
           {{ operation.transaction_type === 'cash' ? 'Деньги' : 'Товары' }}
         </td>
@@ -61,15 +62,9 @@
     balance: BalanceData,
   }>();
 
-  function prettyDate(str: string) {
-    return new Date(str).toLocaleString('ru-RU', {
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-    });
-  }
+  defineEmits<{
+    (event: 'operation:show', id: number): void,
+  }>();
 </script>
 
 
