@@ -41,6 +41,17 @@
             </div>
           </div>
 
+          <div v-if="operation.data.transaction_type === 'cash'">
+            <div class="tw-font-bold tw-text-base tw-mb-2">Тип оплпты:</div>
+            <div>
+              {{
+                operation.data.payment_source === 'checking-account' ? 'Рассчетный счет'
+                : operation.data.payment_source === 'self-collection' ? 'Самоинкасация'
+                : 'Продукты'
+              }}
+            </div>
+          </div>
+
           <div v-if="operation.data.transaction_type === 'products'">
             <div class="tw-font-bold tw-text-base tw-mb-2">Состав:</div>
             <div class="tw-space-y-2 tw-text-sm">

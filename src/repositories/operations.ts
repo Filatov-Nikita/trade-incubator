@@ -26,6 +26,7 @@ export interface OperationCashBody {
   company_id: number | string,
   comment: string | null,
   type: OperationType,
+  payment_source: PaymentSource,
   files: number[] | null,
 }
 
@@ -47,6 +48,7 @@ export interface OperationShowed {
   id: number,
   type: OperationType,
   transaction_type: TransactionType,
+  payment_source: PaymentSource,
   sum: number,
   company: CompanyListItem,
   files: FileItem[],
@@ -63,11 +65,13 @@ export interface BalanceParams {
 
 export type TransactionType = 'products' | 'cash';
 export type OperationType = 'purchase' | 'supply';
+export type PaymentSource = 'checking-account' | 'self-collection' | 'products';
 
 interface OperationBase {
   id: number,
   sum: number,
   type: OperationType,
+  payment_source: PaymentSource,
   created_at: string,
   company: Omit<CompanyListItem, 'description'>,
 }

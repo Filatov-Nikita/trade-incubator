@@ -6,6 +6,19 @@
       :error="!!errors.company_id"
       :error-message="errors.company_id"
     />
+    <q-select
+      class="tw-mb-2"
+      filled
+      label="Тип оплаты"
+      :options="paymentOptions"
+      option-label="label"
+      option-value="value"
+      v-model="form.payment_source"
+      emit-value
+      map-options
+      :error="!!errors.payment_source"
+      :error-message="errors.payment_source"
+    />
     <q-input
       class="tw-mb-2"
       type="number"
@@ -47,4 +60,9 @@
   }>();
 
   const files = defineModel<FileItem[]>('files', { default: [] });
+
+  const paymentOptions = [
+    { label: 'Расчетный счет', value: 'checking-account' },
+    { label: 'Самоинкасация', value: 'self-collection' },
+  ];
 </script>

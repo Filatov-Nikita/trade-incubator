@@ -14,6 +14,7 @@
     <tbody>
       <tr
         v-for="operation in balance.operations"
+        class="tw-cursor-pointer"
         :class="{
           'tw-bg-green-50': operation.type === 'supply',
           'tw-bg-red-50': operation.type === 'purchase',

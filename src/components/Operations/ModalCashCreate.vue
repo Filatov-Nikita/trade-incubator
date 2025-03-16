@@ -40,6 +40,7 @@
     sum: '',
     company_id: '',
     comment: '',
+    payment_source: 'checking-account',
   });
 
   function resetForm() {
