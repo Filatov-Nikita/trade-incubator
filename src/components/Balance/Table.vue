@@ -31,7 +31,7 @@
             <a class="tw-text-blue-700" :href="`mailto:${operation.company.email}`" @click.stop>{{ operation.company.email }}</a>
           </p>
         </td>
-        <td>{{ $prettyDateShort(operation.created_at) }}</td>
+        <td>{{ $prettyDate(operation.date_from) }}</td>
         <td>
           {{ operation.transaction_type === 'cash' ? 'Деньги' : 'Товары' }}
         </td>

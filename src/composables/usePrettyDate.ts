@@ -10,8 +10,16 @@ export function prettyDateShort(str: string) {
 
 export function prettyDateOnly(str: string) {
   return new Date(str).toLocaleString('ru-RU', {
-    day: '2-digit',
+    day: 'numeric',
     month: 'long',
+    year: 'numeric',
+  });
+}
+
+export function prettyDate(str: string) {
+  return new Date(str).toLocaleString('ru-RU', {
+    day: '2-digit',
+    month: '2-digit',
     year: 'numeric',
   });
 }
@@ -20,5 +28,6 @@ export default function usePrettyDate() {
   return {
     prettyDateShort,
     prettyDateOnly,
+    prettyDate,
   }
 }

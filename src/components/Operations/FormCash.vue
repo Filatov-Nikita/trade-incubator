@@ -21,6 +21,15 @@
     />
     <q-input
       class="tw-mb-2"
+      filled
+      label="Дата операции"
+      type="date"
+      v-model="form.date_from"
+      :error="!!errors.date_from"
+      :error-message="errors.date_from"
+    />
+    <q-input
+      class="tw-mb-2"
       type="number"
       min="0"
       step="0.01"

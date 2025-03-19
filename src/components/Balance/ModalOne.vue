@@ -15,7 +15,12 @@
       <q-card-section class="tw-pt-0" v-if="operation">
         <div class="tw-space-y-4">
           <div>
-            <div class="tw-font-bold tw-text-base tw-mb-2">Дата:</div>
+            <div class="tw-font-bold tw-text-base tw-mb-2">Дата операции:</div>
+            <div>{{ $prettyDate(operation.data.date_from) }}</div>
+          </div>
+
+          <div>
+            <div class="tw-font-bold tw-text-base tw-mb-2">Дата создания:</div>
             <div>{{ $prettyDateShort(operation.data.created_at) }}</div>
           </div>
 
@@ -120,6 +125,6 @@
   const title = computed(() => {
     if(!operation.value) return '';
     const label = operation.value.data.type === 'purchase' ? 'Отгрузка' : 'Приход';
-    return label + ` №${operation.value.data.id} от ${ prettyDateOnly(operation.value.data.created_at) }`
+    return label + ` №${operation.value.data.id} от ${ prettyDateOnly(operation.value.data.date_from) }`
   });
 </script>

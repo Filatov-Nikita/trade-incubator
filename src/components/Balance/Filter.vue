@@ -16,6 +16,7 @@
               class="tw-w-[240px] tw-grow"
               filled
               label="Дата от"
+              type="date"
               hide-bottom-space
               v-model="filter.date_from"
             />
@@ -23,6 +24,7 @@
               class="tw-w-[240px] tw-grow"
               filled
               label="Дата до"
+              type="date"
               hide-bottom-space
               v-model="filter.date_to"
             />

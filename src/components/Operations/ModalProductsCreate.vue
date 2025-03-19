@@ -73,6 +73,7 @@
   const form: Omit<OperationProductsBody, 'type' | 'files' | 'products'> = reactive({
     company_id: '',
     comment: '',
+    date_from: '',
   });
 
   const api = useRepositories();
@@ -102,6 +103,7 @@
   function resetForms() {
     form.company_id = '';
     form.comment = '';
+    form.date_from = '';
     files.value = [];
     activeStep.value = 0;
     products.value = [];

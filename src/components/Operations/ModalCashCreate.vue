@@ -41,12 +41,14 @@
     company_id: '',
     comment: '',
     payment_source: 'checking-account',
+    date_from: '',
   });
 
   function resetForm() {
     form.sum = '';
     form.company_id = '';
     form.comment = '';
+    form.date_from = '';
     files.value = [];
   }
 

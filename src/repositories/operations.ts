@@ -27,6 +27,7 @@ export interface OperationCashBody {
   comment: string | null,
   type: OperationType,
   payment_source: PaymentSource,
+  date_from: string,
   files: number[] | null,
 }
 
@@ -40,6 +41,7 @@ export interface OperationProductsBody {
   company_id: number | string,
   comment: string | null,
   type: OperationType,
+  date_from: string,
   files: number[] | null,
   products: OperationProduct[],
 }
@@ -54,6 +56,7 @@ export interface OperationShowed {
   files: FileItem[],
   products: ProductOne[],
   comment: string | null,
+  date_from: string,
   created_at: string,
 }
 
@@ -72,6 +75,7 @@ interface OperationBase {
   sum: number,
   type: OperationType,
   payment_source: PaymentSource,
+  date_from: string,
   created_at: string,
   company: Omit<CompanyListItem, 'description'>,
 }
