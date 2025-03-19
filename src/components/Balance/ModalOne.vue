@@ -91,6 +91,11 @@
             <PhotoGallery :items="operation.data.files" />
           </div>
         </div>
+
+        <div class="tw-mt-8">
+          <q-btn flat color="negative" @click="$emit('remove', operationId)">Отменить операцию</q-btn>
+        </div>
+
         <q-inner-loading :showing="loading"></q-inner-loading>
       </q-card-section>
     </q-card>
@@ -106,6 +111,10 @@
 
   const props = defineProps<{
     operationId: number,
+  }>();
+
+  defineEmits<{
+    (event: 'remove', id: number): void,
   }>();
 
   const value = defineModel<boolean>({ default: false });

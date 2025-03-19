@@ -18,6 +18,9 @@ export default function(http: AxiosInstance) {
     createProducts(body: OperationProductsBody) {
       return http.post<void>('operations/products', body);
     },
+    remove(id: string | number) {
+      return http.delete<void>(`operations/${id}`);
+    },
   };
 }
 

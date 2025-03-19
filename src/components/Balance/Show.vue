@@ -3,7 +3,18 @@
   <template v-if="operations">
     <Result class="tw-mb-4" :balance="operations.data" />
     <Table :balance="operations.data" @operation:show="activeOperation = $event; showed = true" />
-    <ModalOne v-if="activeOperation" v-model="showed" :operationId="activeOperation" />
+    <template v-if="activeOperation">
+      <ModalOne
+        v-model="showed"
+        :operationId="activeOperation"
+        @remove="showedRemove = true"
+      />
+      <ModalRemove
+        v-model="showedRemove"
+        :operationId="activeOperation"
+        @success="send(); showed = false"
+      />
+    </template>
   </template>
 </template>
 
@@ -12,6 +23,7 @@
   import Table from 'src/components/Balance/Table.vue';
   import Result from 'src/components/Balance/Result.vue';
   import ModalOne from 'src/components/Balance/ModalOne.vue';
+  import ModalRemove from 'src/components/Balance/ModalRemove.vue';
   import { reactive, ref } from 'vue';
   import { BalanceParams } from 'src/repositories/operations';
   import useRepositories from 'src/composables/useRepositories';
@@ -41,6 +53,7 @@
   }
 
   const showed = ref(false);
+  const showedRemove = ref(false);
   const activeOperation = ref<number | null>(null);
 
   defineExpose({
