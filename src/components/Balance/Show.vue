@@ -5,14 +5,22 @@
     <Table :balance="operations.data" @operation:show="activeOperation = $event; showed = true" />
     <template v-if="activeOperation">
       <ModalOne
+        ref="modalOneRef"
         v-model="showed"
-        :operationId="activeOperation"
+        :operationId="activeOperation.id"
         @remove="showedRemove = true"
+        @update="showedUpdate = true;"
       />
       <ModalRemove
         v-model="showedRemove"
-        :operationId="activeOperation"
+        :operationId="activeOperation.id"
         @success="send(); showed = false"
+      />
+      <ModalCashUpdate
+        v-if="activeOperation.transaction_type === 'cash'"
+        v-model="showedUpdate"
+        :operationId="activeOperation.id"
+        @success="send(); showedUpdate = false; modalOneRef?.refresh()"
       />
     </template>
   </template>
@@ -24,8 +32,9 @@
   import Result from 'src/components/Balance/Result.vue';
   import ModalOne from 'src/components/Balance/ModalOne.vue';
   import ModalRemove from 'src/components/Balance/ModalRemove.vue';
+  import ModalCashUpdate from 'src/components/Operations/ModalCashUpdate.vue';
   import { reactive, ref } from 'vue';
-  import { BalanceParams } from 'src/repositories/operations';
+  import { BalanceParams, OperationRow } from 'src/repositories/operations';
   import useRepositories from 'src/composables/useRepositories';
   import useRequest from 'src/composables/useRequest';
 
@@ -54,7 +63,10 @@
 
   const showed = ref(false);
   const showedRemove = ref(false);
-  const activeOperation = ref<number | null>(null);
+  const showedUpdate = ref(false);
+  const activeOperation = ref<OperationRow | null>(null);
+
+  const modalOneRef = ref<any>(null);
 
   defineExpose({
     refresh: send,

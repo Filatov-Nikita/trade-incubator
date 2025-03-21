@@ -49,6 +49,7 @@
     form.company_id = '';
     form.comment = '';
     form.date_from = '';
+    form.payment_source = 'checking-account';
     files.value = [];
   }
 

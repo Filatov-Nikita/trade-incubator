@@ -19,7 +19,7 @@
           'tw-bg-green-50': operation.type === 'supply',
           'tw-bg-red-50': operation.type === 'purchase',
         }"
-        @click="$emit('operation:show', operation.id)"
+        @click="$emit('operation:show', operation)"
       >
         <td class="tw-font-bold">{{ operation.id }}</td>
         <td>
@@ -57,14 +57,14 @@
 </template>
 
 <script setup lang="ts">
-  import type { BalanceData } from 'src/repositories/operations';
+  import type { BalanceData, OperationRow } from 'src/repositories/operations';
 
   defineProps<{
     balance: BalanceData,
   }>();
 
   defineEmits<{
-    (event: 'operation:show', id: number): void,
+    (event: 'operation:show', operation: OperationRow): void,
   }>();
 </script>
 

@@ -15,6 +15,9 @@ export default function(http: AxiosInstance) {
     createCash(body: OperationCashBody) {
       return http.post<void>('operations/cash', body);
     },
+    updateCash(id: string | number, body: Omit<OperationCashBody, 'type'>) {
+      return http.put<void>(`operations/${id}/cash`, body);
+    },
     createProducts(body: OperationProductsBody) {
       return http.post<void>('operations/products', body);
     },

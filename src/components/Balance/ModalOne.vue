@@ -92,7 +92,8 @@
           </div>
         </div>
 
-        <div class="tw-mt-8">
+        <div class="tw-mt-8 tw-flex tw-flex-wrap tw-gap-2">
+          <q-btn flat color="primary" @click="$emit('update', operationId)">Редактировать</q-btn>
           <q-btn flat color="negative" @click="$emit('remove', operationId)">Отменить операцию</q-btn>
         </div>
 
@@ -115,13 +116,14 @@
 
   defineEmits<{
     (event: 'remove', id: number): void,
+    (event: 'update', id: number): void,
   }>();
 
   const value = defineModel<boolean>({ default: false });
 
   const api = useRepositories();
 
-  const { data: operation, loading } = useRequest(
+  const { data: operation, loading, send } = useRequest(
     () => api.operations.show(props.operationId),
     {
       errorText: 'Не удалось загрузить операцию!',
@@ -135,5 +137,9 @@
     if(!operation.value) return '';
     const label = operation.value.data.type === 'purchase' ? 'Отгрузка' : 'Приход';
     return label + ` №${operation.value.data.id} от ${ prettyDateOnly(operation.value.data.date_from) }`
+  });
+
+  defineExpose({
+    refresh: send,
   });
 </script>
