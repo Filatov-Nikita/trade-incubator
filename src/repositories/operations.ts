@@ -21,6 +21,9 @@ export default function(http: AxiosInstance) {
     createProducts(body: OperationProductsBody) {
       return http.post<void>('operations/products', body);
     },
+    updateProducts(id: string | number, body: Omit<OperationProductsBody, 'type'>) {
+      return http.put<void>(`operations/${id}/products`, body);
+    },
     remove(id: string | number) {
       return http.delete<void>(`operations/${id}`);
     },

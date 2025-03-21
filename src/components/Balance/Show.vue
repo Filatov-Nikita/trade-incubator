@@ -22,6 +22,12 @@
         :operationId="activeOperation.id"
         @success="send(); showedUpdate = false; modalOneRef?.refresh()"
       />
+      <ModalProductsUpdate
+        v-if="activeOperation.transaction_type === 'products'"
+        v-model="showedUpdate"
+        :operationId="activeOperation.id"
+        @success="send(); showedUpdate = false; modalOneRef?.refresh()"
+      />
     </template>
   </template>
 </template>
@@ -33,6 +39,7 @@
   import ModalOne from 'src/components/Balance/ModalOne.vue';
   import ModalRemove from 'src/components/Balance/ModalRemove.vue';
   import ModalCashUpdate from 'src/components/Operations/ModalCashUpdate.vue';
+  import ModalProductsUpdate from 'src/components/Operations/ModalProductsUpdate.vue';
   import { reactive, ref } from 'vue';
   import { BalanceParams, OperationRow } from 'src/repositories/operations';
   import useRepositories from 'src/composables/useRepositories';
