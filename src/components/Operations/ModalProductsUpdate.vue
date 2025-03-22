@@ -98,12 +98,12 @@
   });
 
   const { send, loading, errors } = usePostRequest(
-    api.operations.updateProducts.bind(null, props.operationId),
-    () => ({
+    () => api.operations.updateProducts(props.operationId, {
       files: files.value.map(f => f.id),
       products: products.value.map(p => ({ count: p.count, price: p.price, id: p.product.id })),
       ...form,
     }),
+    () => {},
     {
       isForm: true,
       errorText: 'Не удалось обновить операцию!',
