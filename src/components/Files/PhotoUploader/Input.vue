@@ -1,8 +1,16 @@
 <template>
-  <div class="file-input">
-    <input class="inp" type="file" accept="image/png, image/jpeg" @change="onChange">
+  <div
+    class="tw-relative tw-w-[100px] tw-h-[100px] tw-rounded-2xl tw-flex tw-items-center tw-justify-center tw-bg-gray-100"
+    v-ripple
+  >
+    <input
+      class="tw-absolute tw-z-10 tw-w-full tw-h-full tw-left-0 tw-top-0 tw-opacity-0"
+      type="file"
+      accept="image/png, image/jpeg"
+      @change="onChange"
+    />
     <q-icon
-      class="icon"
+      class="tw-text-gray-700"
       name="photo_camera"
       size="24px"
     />
@@ -22,29 +30,3 @@
     input.value = '';
   }
 </script>
-
-<style scoped lang="scss">
-  .file-input {
-    position: relative;
-    width: 100px;
-    height: 100px;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    @apply tw-bg-gray-100;
-  }
-
-  .inp {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-  }
-
-  .icon {
-    @apply tw-text-gray-700;
-  }
-</style>
