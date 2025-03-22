@@ -7,23 +7,31 @@
           class="tw-shrink-0"
           v-for="file in uploadedFiles"
           :key="file.id"
-          :url="file.url"
+          :file="file"
+          @remove="fileRemoveId = $event; showedRemove = true"
         />
         <FileInput class="tw-shrink-0" @change:file="onChnageFile" />
       </div>
     </div>
     <div class="caption" v-if="caption">{{ caption }}</div>
+    <ModalRemove
+      v-if="fileRemoveId"
+      v-model="showedRemove"
+      :fileId="fileRemoveId"
+      @success="onRemoveSuccess"
+    />
     <q-inner-loading :showing="loading" />
   </div>
 </template>
 
 <script setup lang="ts">
-  import { ref } from 'vue';
-  import usePostRequest from 'src/composables/usePostRequest';
   import FileInput from './Input.vue';
   import PhotoPreview from './Preview.vue';
+  import ModalRemove from './ModalRemove.vue';
+  import usePostRequest from 'src/composables/usePostRequest';
   import useRepositories from 'src/composables/useRepositories';
   import type { FileItem } from 'src/repositories/files';
+  import { ref } from 'vue';
 
   defineProps<{
     label: string,
@@ -53,6 +61,13 @@
   function onChnageFile(file: File) {
     currentFile.value = file;
     send();
+  }
+
+  const showedRemove = ref(false);
+  const fileRemoveId = ref<number | null>(null);
+
+  function onRemoveSuccess(fileId: number) {
+    uploadedFiles.value = uploadedFiles.value.filter(f => f.id !== fileId);
   }
 </script>
 

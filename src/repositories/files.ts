@@ -7,6 +7,9 @@ export default function(http: AxiosInstance) {
     upload(body: UploadBody) {
       return http.post<FileRes>('upload-file', jsonFormData(body));
     },
+    remove(id: string | number) {
+      return http.delete<void>(`remove-file/${id}`);
+    }
   }
 }
 

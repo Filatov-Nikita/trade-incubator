@@ -6,7 +6,7 @@
           <div class="tw-text-xl tw-font-bold tw-grow">{{ title }}</div>
           <q-btn flat round icon="close" @click="value = false" />
         </div>
-        <FormCash v-if="operation" :form="form" :files="files" :errors="errors" @submit="update" />
+        <FormCash v-if="operation" :form="form" v-model:files="files" :errors="errors" @submit="update" />
         <q-inner-loading :showing="loadingOne || updating"></q-inner-loading>
       </q-card-section>
     </q-card>

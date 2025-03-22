@@ -1,30 +1,26 @@
 <template>
-  <div class="preview">
-    <img class="photo" :src="url" />
+  <div class="tw-relative">
+    <q-img class="tw-w-[100px] tw-h-[100px] tw-rounded-2xl" :src="file.url" />
+    <q-btn
+      class="tw-absolute tw-top-0 tw-right-0 tw-z-10 tw-bg-white tw-text-red-700"
+      flat
+      dense
+      round
+      icon="close"
+      size="xs"
+      @click="$emit('remove', file.id)"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
+  import type { FileItem } from 'src/repositories/files';
+
   defineProps<{
-    url: string,
+    file: FileItem,
+  }>();
+
+  defineEmits<{
+    (event: 'remove', id: number): void,
   }>();
 </script>
-
-<style scoped lang="scss">
-  .preview {
-    position: relative;
-    width: 100px;
-    height: 100px;
-    border-radius: 20px;
-    overflow: hidden;
-  }
-
-  .photo {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    object-fit: cover;
-  }
-</style>

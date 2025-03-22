@@ -8,7 +8,7 @@
           </div>
           <q-btn flat round icon="close" @click="value = false" />
         </div>
-        <FormCash :form="form" :errors="errors" :files="files" @submit="send" />
+        <FormCash :form="form" :errors="errors" v-model:files="files" @submit="send" />
         <q-inner-loading :showing="loading"></q-inner-loading>
       </q-card-section>
     </q-card>
