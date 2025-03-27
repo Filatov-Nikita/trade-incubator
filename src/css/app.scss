@@ -22,3 +22,13 @@ h1, .h1 {
   width: 100%;
   @apply tw-bg-white;
 }
+
+@media print {
+  .q-header, .q-drawer-container, h1, .q-btn {
+    display: none !important;
+  }
+
+  .q-page-container {
+    padding-left: 0px !important;
+  }
+}

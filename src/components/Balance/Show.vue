@@ -1,8 +1,8 @@
 <template>
-  <Filter class="tw-mb-8" :filter="filter" @apply="send" @reset="resetFilter" />
+  <Filter id="filter" class="tw-mb-8" :filter="filter" @apply="send" @reset="resetFilter" />
   <template v-if="operations">
-    <Result class="tw-mb-4" :balance="operations.data" />
-    <Table :balance="operations.data" @operation:show="activeOperation = $event; showed = true" />
+    <Result id="result" class="tw-mb-4" :balance="operations.data" />
+    <Table id="balance" :balance="operations.data" @operation:show="activeOperation = $event; showed = true" />
     <template v-if="activeOperation">
       <ModalOne
         ref="modalOneRef"
@@ -79,3 +79,48 @@
     refresh: send,
   });
 </script>
+
+<style lang="scss">
+  @media print {
+    #balance {
+      table {
+        border: 1px solid black !important;
+
+        td, th {
+          color: black;
+          background: white !important;
+          border: 1px solid black !important;
+        }
+
+        td:last-child {
+          @apply tw-text-red-700 !important;
+        }
+
+        td:nth-last-child(2) {
+          @apply tw-text-green-700 !important;
+        }
+
+        tr {
+          page-break-inside: avoid;
+        }
+
+        thead {
+          display: table-header-group;
+        }
+      }
+    }
+
+    #result, .q-markup-table {
+      box-shadow: none !important;
+    }
+
+    #result {
+      position: static !important;
+      border: 2px solid black !important;
+    }
+
+    #filter {
+      display: none !important;
+    }
+  }
+</style>

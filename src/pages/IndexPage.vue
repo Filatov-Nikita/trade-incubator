@@ -2,7 +2,7 @@
   <q-page class="page-py">
     <div class="wrapper">
       <h1 class="h1 tw-mb-5">Мои операции</h1>
-      <div class="tw-flex tw-flex-wrap tw-gap-3 tw-max-w-[200px] tw-mb-6">
+      <div id="actions" class="tw-flex tw-flex-wrap tw-gap-3 tw-max-w-[200px] tw-mb-6">
         <q-btn class="tw-bg-orange-600 tw-text-white tw-w-full" @click="showedTypes = true; activeOperation = 'purchase'">
           Новая отгрузка
         </q-btn>
@@ -28,6 +28,9 @@
       />
       <BalanceShow ref="balanceRef" />
     </div>
+    <q-page-sticky class="tw-z-50" position="top-right" :offset="[24, 16]">
+      <q-btn class="tw-bg-white tw-text-green-900" round icon="print" @click="print" />
+    </q-page-sticky>
   </q-page>
 </template>
 
@@ -45,4 +48,16 @@
   const activeOperation = ref<OperationType | null>(null);
 
   const balanceRef = ref<{ refresh: () => void } | null>(null);
+
+  function print() {
+    window.print();
+  }
 </script>
+
+<style lang="scss">
+  @media print {
+    #actions {
+      display: none !important;
+    }
+  }
+</style>
