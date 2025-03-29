@@ -1,19 +1,19 @@
 <template>
-  <q-form ref="formRef" @submit="submit">
+  <q-form ref="formRef" @submit="onSubmit">
     <ProductsSelect class="tw-mb-2" v-model="form.product" :disabledIds="disabledIds" :rules="[requiredRule]"  />
     <q-input class="tw-mb-2" min="0" step="0.01" filled type="number" label="Цена" v-model="form.price" :rules="[requiredRule]" />
-    <q-input filled type="number" min="1" step="1" label="Количество" v-model="form.count" :rules="[requiredRule]" />
+    <q-input ref="countRef" filled label="Количество" :rules="[requiredRule]" :modelValue="form.count" @update:modelValue="handleChange($event as string)" @blur="onBlur" />
     <q-btn class="tw-w-full tw-mt-3" color="primary" type="submit" flat>Добавить</q-btn>
   </q-form>
 </template>
 
 <script setup lang="ts">
-  import { computed, reactive, ref } from 'vue';
+  import { computed, reactive, ref, toRef, nextTick } from 'vue';
   import ProductsSelect from 'src/components/Products/Select.vue';
   import { ProductListItem } from 'src/repositories/products';
   import { ProductItem } from '../FormProductsSteps/model';
-  import type { QForm } from 'quasar';
-  import { nextTick } from 'process';
+  import type { QForm, QInput } from 'quasar';
+  import useCountInput from 'src/composables/useCountInput';
 
   const props = defineProps<{
     items: ProductItem[],
@@ -50,8 +50,13 @@
       price: Math.max(0, Math.floor(parseFloat(form.price.toString()) * 100) / 100),
     });
     resetForm();
-    nextTick(() => formRef.value?.reset());
+    nextTick(() => formRef.value?.resetValidation());
   }
 
+  const onSubmit = () => setTimeout(submit, 0);
+
   const requiredRule = (v: string) => !!v || 'Обязательное поле';
+
+  const countRef = ref<QInput | null>(null);
+  const { onBlur, handleChange } = useCountInput(countRef, toRef(form, 'count'));
 </script>
