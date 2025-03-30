@@ -5,7 +5,8 @@
         <th class="tw-text-left !tw-text-base !tw-font-bold">ID</th>
         <th class="tw-text-left !tw-text-base !tw-font-bold">Поставщик</th>
         <th class="tw-text-left !tw-text-base !tw-font-bold">Дата</th>
-        <th class="tw-text-left !tw-text-base !tw-font-bold">Тип</th>
+        <!-- <th class="tw-text-left !tw-text-base !tw-font-bold">Тип</th> -->
+        <th class="tw-text-left !tw-text-base !tw-font-bold">Оплата</th>
         <th class="tw-text-left !tw-text-base !tw-font-bold">Состав</th>
         <th class="tw-text-left !tw-text-base !tw-font-bold">Приход</th>
         <th class="tw-text-left !tw-text-base !tw-font-bold">Расход</th>
@@ -32,8 +33,16 @@
           </p>
         </td>
         <td>{{ $prettyDate(operation.date_from) }}</td>
-        <td>
+        <!-- <td>
           {{ operation.transaction_type === 'cash' ? 'Деньги' : 'Товары' }}
+        </td> -->
+        <td>
+          {{
+            operation.payment_source === 'checking-account'
+            ? 'Расчетный счет'
+            : operation.payment_source === 'self-collection' ? 'Самоинкасация'
+            : 'Продукты'
+          }}
         </td>
         <td class="tw-space-y-2 tw-text-xs">
           <template v-if="operation.transaction_type === 'products'">
