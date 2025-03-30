@@ -103,6 +103,8 @@ export type OperationProductsOne = {
 export type OperationRow = OperationCashOne | OperationProductsOne;
 
 export interface BalanceData {
+  income_total: number,
+  outcome_total: number,
   balance: number,
   operations: OperationRow[],
 }

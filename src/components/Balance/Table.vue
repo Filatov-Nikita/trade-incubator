@@ -8,8 +8,14 @@
         <!-- <th class="tw-text-left !tw-text-base !tw-font-bold">Тип</th> -->
         <th class="tw-text-left !tw-text-base !tw-font-bold">Оплата</th>
         <th class="tw-text-left !tw-text-base !tw-font-bold">Состав</th>
-        <th class="tw-text-left !tw-text-base !tw-font-bold">Приход</th>
-        <th class="tw-text-left !tw-text-base !tw-font-bold">Расход</th>
+        <th class="tw-text-left !tw-text-base !tw-font-bold">
+          <span class="tw-block">Приход</span>
+          <span class="tw-block tw-text-green-700 tw-text-xs">+{{ $amount(balance.income_total) }}</span>
+        </th>
+        <th class="tw-text-left !tw-text-base !tw-font-bold">
+          <span class="tw-block">Расход</span>
+          <span class="tw-block tw-text-red-700 tw-text-xs">-{{ $amount(balance.outcome_total) }}</span>
+        </th>
       </tr>
     </thead>
     <tbody>
