@@ -1,5 +1,5 @@
 <template>
-  <q-dialog v-model="value">
+  <q-dialog class="modal-photo-show" v-model="value">
     <q-card class="!tw-bg-transparent !tw-h-full !tw-max-w-full !tw-w-full" flat>
       <q-btn class="tw-absolute tw-top-0 tw-right-0 tw-z-50" color="white" dense round flat icon="close" size="lg" @click="value = false" />
       <q-carousel
@@ -33,6 +33,12 @@
   const value = defineModel<boolean>({ default: false });
   const active = defineModel<number>('activeIndex', { default: 0 });
 </script>
+
+<style>
+  .modal-photo-show .q-dialog__backdrop {
+    background: rgba(0, 0, 0, 0.95) !important;
+  }
+</style>
 
 <style scoped>
   .slider :deep(.q-carousel__arrow .q-icon) {
