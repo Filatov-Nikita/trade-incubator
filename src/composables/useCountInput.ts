@@ -5,7 +5,7 @@ export default function(input: Ref<QInput | null>, field: Ref<string | number>) 
   function clear(val: string) {
     if(!input.value) return val;
     const el = input.value.nativeEl;
-    const newVal = val.replace(/[^0-9\s]/g, '');
+    const newVal = val.replace(/\s\s+/g, ' ').replace(/[^0-9\s]/g, '');
     el.value = newVal;
     return newVal;
   }
