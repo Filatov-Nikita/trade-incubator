@@ -62,7 +62,7 @@
     api.auth.login,
     () => ({
       ...form,
-      device_name: 'test',
+      device_name: navigator.userAgent,
     }),
     {
       errorText: 'Не удалось войти!',
