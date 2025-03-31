@@ -14,6 +14,8 @@ export default defineConfig((/* ctx */) => {
     boot: [
       'init',
       'api',
+      'init-user',
+      'auth',
     ],
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-file#css
@@ -97,6 +99,7 @@ export default defineConfig((/* ctx */) => {
       // Quasar plugins
       plugins: [
         'Notify',
+        'Loading',
       ]
     },
 

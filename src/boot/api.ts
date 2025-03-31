@@ -4,9 +4,11 @@ import createProductsRepo from 'src/repositories/products';
 import createCompaniesRepo from 'src/repositories/companies';
 import createOperationsRepo from 'src/repositories/operations';
 import createFilesRepo from 'src/repositories/files';
+import createAuthRepo from 'src/repositories/auth';
 import { InjectionKey } from 'vue';
+import * as Token from 'src/utils/token';
 
-declare module 'vue' {
+declare module '@vue/runtime-core' {
   interface ComponentCustomProperties {
     $repositories: ReturnType<typeof createRepositories>,
     $http: AxiosInstance,
@@ -29,6 +31,7 @@ export function createRepositories(http: AxiosInstance) {
     'companies': createCompaniesRepo(http),
     'operations': createOperationsRepo(http),
     'files': createFilesRepo(http),
+    'auth': createAuthRepo(http),
   };
 
   return repositories;
@@ -37,6 +40,16 @@ export function createRepositories(http: AxiosInstance) {
 export function createHttp() {
   const http = axios.create({
     baseURL: process.env.API_BASE ?? '',
+  });
+
+  http.interceptors.request.use((config) => {
+    const token = Token.get();
+
+    if(!token) return config;
+
+    config.headers.setAuthorization('Bearer ' + token);
+
+    return config;
   });
 
   return http;
