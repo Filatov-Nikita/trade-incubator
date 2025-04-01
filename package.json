@@ -2,7 +2,7 @@
   "name": "trade-incubator",
   "version": "0.0.1",
   "description": "Торговый журнал",
-  "productName": "TradeIncubator",
+  "productName": "Торговый журнал",
   "author": "Nikita Antonov <nikita45454@gmail.com>",
   "type": "module",
   "private": true,
