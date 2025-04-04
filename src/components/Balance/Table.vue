@@ -46,7 +46,7 @@
           {{
             operation.payment_source === 'checking-account'
             ? 'Расчетный счет'
-            : operation.payment_source === 'self-collection' ? 'Самоинкасация'
+            : operation.payment_source === 'self-collection' ? 'Самоинкассация'
             : 'Продукты'
           }}
         </td>

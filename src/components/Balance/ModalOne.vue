@@ -51,7 +51,7 @@
             <div>
               {{
                 operation.data.payment_source === 'checking-account' ? 'Рассчетный счет'
-                : operation.data.payment_source === 'self-collection' ? 'Самоинкасация'
+                : operation.data.payment_source === 'self-collection' ? 'Самоинкассация'
                 : 'Продукты'
               }}
             </div>

@@ -72,6 +72,6 @@
 
   const paymentOptions = [
     { label: 'Расчетный счет', value: 'checking-account' },
-    { label: 'Самоинкасация', value: 'self-collection' },
+    { label: 'Самоинкассация', value: 'self-collection' },
   ];
 </script>
